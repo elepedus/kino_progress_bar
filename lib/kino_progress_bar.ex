@@ -290,7 +290,6 @@ defmodule KinoProgressBar do
     export function init(ctx, html) {
       ctx.root.innerHTML = html;
       ctx.handleEvent("update", ({max, value}) => {
-        console.log({max,value,ctx});
         const [pb, counter_span, _] = document.getElementById("kino_pb").children;
         if (max) {pb.max = max;}
         if (!value) {
@@ -299,7 +298,7 @@ defmodule KinoProgressBar do
           pb.value = value;
         }
 
-        counter_span.innerText = `${value}/${max || "???"}`;
+        counter_span.innerText = `${value}/${pb.max || "???"}`;
       });
 
       ctx.handleEvent("done", ({value}) => {
